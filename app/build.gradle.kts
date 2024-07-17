@@ -33,9 +33,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
+
+    //splashscreen
+    implementation(libs.androidx.core.splashscreen)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

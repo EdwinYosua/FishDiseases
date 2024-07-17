@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.FishDiseasesApp.Splash" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/menuBG</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ikanqu_logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.FishDiseasesApp</item>
+
+    </style>
+
+
+</resources>
