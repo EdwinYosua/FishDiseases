@@ -5,5 +5,16 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+
+    <style name="TextBold">
+        <item name="fontFamily">@font/arvo_bold</item>
+    </style>
+
+
+    <style name="ButtonText" parent="TextBold">
+        <item name="android:textSize">27sp</item>
+    </style>
+
+
     <style name="Theme.FishDiseasesApp" parent="Base.Theme.FishDiseasesApp" />
 </resources>
