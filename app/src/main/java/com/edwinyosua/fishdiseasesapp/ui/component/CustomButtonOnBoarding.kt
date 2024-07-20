@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.edwinyosua.fishdiseasesapp.R
 
-class CustomButton : AppCompatButton {
+class CustomButtonOnBoarding : AppCompatButton {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -22,7 +22,7 @@ class CustomButton : AppCompatButton {
         txtColor = ContextCompat.getColor(context, R.color.btnTextColor)
         txtColorPressed = ContextCompat.getColor(context, R.color.white)
         defaultBtnBackground =
-            ContextCompat.getDrawable(context, R.drawable.bg_btn) as Drawable
+            ContextCompat.getDrawable(context, R.drawable.bg_btn_onboarding) as Drawable
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -31,7 +31,6 @@ class CustomButton : AppCompatButton {
         background = defaultBtnBackground
         if (isPressed) setTextColor(txtColorPressed) else setTextColor(txtColor)
         gravity = Gravity.CENTER
-
     }
 
 
