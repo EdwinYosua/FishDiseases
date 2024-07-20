@@ -3,6 +3,7 @@ package com.edwinyosua.fishdiseasesapp.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentOnBoardingBinding
 
@@ -21,7 +22,16 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun initUI() {}
 
-    override fun initAction() {}
+    override fun initAction() {
+        binding.apply {
+            btnLogin.setOnClickListener {
+                findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToLoginFragment())
+            }
+            btnRegister.setOnClickListener {
+                findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToRegisterFragment())
+            }
+        }
+    }
 
     override fun initProcess() {}
 
