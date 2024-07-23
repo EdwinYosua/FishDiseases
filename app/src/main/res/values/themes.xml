@@ -10,6 +10,13 @@
         <item name="fontFamily">@font/arvo_bold</item>
     </style>
 
+    <style name="SmallTitle" parent="TextBold">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="MediumTitle" parent="TextBold">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <style name="ButtonText" parent="TextBold">
         <item name="android:textSize">27sp</item>

@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="menuBG">#93d2f6</color>
     <color name="btnTextColor">#4FA6E9</color>
+    <color name="titleTextColor">#3A83B2</color>
 </resources>

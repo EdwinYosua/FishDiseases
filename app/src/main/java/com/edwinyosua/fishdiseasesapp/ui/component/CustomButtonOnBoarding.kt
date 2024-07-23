@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.edwinyosua.fishdiseasesapp.R
@@ -31,10 +30,7 @@ class CustomButtonOnBoarding : AppCompatButton {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-//        background = if (isPressed) pressedBtnBackground else defaultBtnBackground
-//        if (isPressed) setTextColor(txtColorPressed) else setTextColor(txtColor)
-
-        if(isPressed) {
+        if (isPressed) {
             background = pressedBtnBackground
             setTextColor(txtColorPressed)
         } else {
@@ -42,7 +38,7 @@ class CustomButtonOnBoarding : AppCompatButton {
             setTextColor(txtColor)
         }
 
-        gravity = Gravity.CENTER
+        textAlignment = TEXT_ALIGNMENT_CENTER
     }
 
 

@@ -29,8 +29,10 @@ class CustomButtonMain : AppCompatButton {
         super.onDraw(canvas)
 
         background = defaultBtnBackground
-        if (isPressed) setTextColor(txtColor) else setTextColor(txtColorPressed)
-        gravity = Gravity.CENTER
+        if (isPressed) setTextColor(txtColorPressed) else setTextColor(txtColor)
+
+        textAlignment = TEXT_ALIGNMENT_CENTER
+
 
     }
 }
