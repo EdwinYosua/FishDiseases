@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentLoginBinding
 
@@ -25,10 +26,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun initAction() {
         binding.apply {
             btnLogin.setOnClickListener {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+
             }
             btnSignUp.setOnClickListener {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
         }
     }
