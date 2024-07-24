@@ -18,9 +18,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = getViewBinding(inflater, container, savedInstanceState)
-        return binding.root
+        return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +47,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             }
             WindowInsetsCompat.CONSUMED
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     abstract fun getViewBinding(

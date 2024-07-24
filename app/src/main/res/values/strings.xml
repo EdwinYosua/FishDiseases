@@ -2,4 +2,10 @@
     <string name="app_name">FishDiseasesApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_into_your_account">Login into your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="forgot_your_account">Forgot Your Account ?</string>
 </resources>

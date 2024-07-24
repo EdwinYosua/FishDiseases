@@ -39,7 +39,7 @@
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="1"
-                    android:text="Login into your account"
+                    android:text="@string/login_into_your_account"
                     android:textColor="@color/titleTextColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/bg_edit_text"
                         android:fontFamily="@font/arvo"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,11 +79,12 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bg_edit_text"
                         android:fontFamily="@font/arvo"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="34dp"
-                    android:text="LOG IN"
+                    android:text="@string/log_in"
                     app:layout_constraintEnd_toEndOf="@id/layout_input_password"
                     app:layout_constraintStart_toStartOf="@id/layout_input_password"
                     app:layout_constraintTop_toBottomOf="@id/layout_input_password" />
@@ -104,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="SIGN UP"
+                    android:text="@string/sign_up"
                     app:layout_constraintEnd_toEndOf="@id/btn_login"
                     app:layout_constraintStart_toStartOf="@id/btn_login"
                     app:layout_constraintTop_toBottomOf="@id/btn_login" />
@@ -116,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
                     android:gravity="center"
-                    android:text="Forgot Your Account ?"
+                    android:text="@string/forgot_your_account"
                     android:textColor="#3A83B2"
                     app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
 
