@@ -5,6 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="TextArvo">
+        <item name="fontFamily">@font/arvo</item>
+    </style>
 
     <style name="TextBold">
         <item name="fontFamily">@font/arvo_bold</item>
@@ -20,6 +23,10 @@
 
     <style name="ButtonText" parent="TextBold">
         <item name="android:textSize">27sp</item>
+    </style>
+
+    <style name="EditText" parent="TextArvo">
+        <item name="background">@drawable/bg_edit_text</item>
     </style>
 
 

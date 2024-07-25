@@ -8,4 +8,9 @@
     <string name="log_in">LOG IN</string>
     <string name="sign_up">SIGN UP</string>
     <string name="forgot_your_account">Forgot Your Account ?</string>
+    <string name="create_your_account">Create your account</string>
+    <string name="fullname_hint">Fullname</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="already_have_an_account_hint">Already have an account ?</string>
 </resources>

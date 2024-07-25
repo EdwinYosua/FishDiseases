@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
@@ -35,6 +36,17 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initObservers()
 
         applyBottomTopInset(view, initInsets())
+        handleKeyboardOverlap(view)
+
+    }
+
+    private fun handleKeyboardOverlap(view: View) {
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            v.updatePadding(bottom = if (imeVisible) imeInsets.bottom else 0)
+            insets
+        }
     }
 
     private fun applyBottomTopInset(view: View, applyInset: Boolean) {
