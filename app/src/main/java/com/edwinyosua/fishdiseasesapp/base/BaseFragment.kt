@@ -33,6 +33,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initAction()
         initProcess()
         initObservers()
+
         applyBottomTopInset(view, initInsets())
     }
 
@@ -48,6 +49,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             WindowInsetsCompat.CONSUMED
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
