@@ -3,6 +3,7 @@ package com.edwinyosua.fishdiseasesapp.ui.register
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
