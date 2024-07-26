@@ -19,7 +19,7 @@
             android:layout_height="608dp"
             android:background="@drawable/rounded_bg"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:paddingHorizontal="45dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
