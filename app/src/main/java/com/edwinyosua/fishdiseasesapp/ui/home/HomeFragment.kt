@@ -15,6 +15,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initInsets(): Boolean = true
 
+    override fun initKeyboardHandler(): Boolean = false
+
     override fun initIntent() {}
 
     override fun initUI() {}

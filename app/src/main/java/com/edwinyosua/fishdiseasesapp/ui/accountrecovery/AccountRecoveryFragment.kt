@@ -16,6 +16,8 @@ class AccountRecoveryFragment : BaseFragment<FragmentAccountRecoveryBinding>() {
 
     override fun initInsets(): Boolean = false
 
+    override fun initKeyboardHandler(): Boolean = true
+
     override fun initIntent() {}
 
     override fun initUI() {}

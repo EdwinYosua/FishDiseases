@@ -13,4 +13,6 @@
     <string name="new_password_hint">New Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="already_have_an_account_hint">Already have an account ?</string>
+    <string name="logout_button">logout_button</string>
+    <string name="history_button">history_button</string>
 </resources>

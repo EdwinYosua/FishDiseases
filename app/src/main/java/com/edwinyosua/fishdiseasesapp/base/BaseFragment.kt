@@ -29,6 +29,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
 
         initInsets()
+        initKeyboardHandler()
         initIntent()
         initUI()
         initAction()
@@ -36,16 +37,17 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initObservers()
 
         applyBottomTopInset(view, initInsets())
-        handleKeyboardOverlap(view)
-
+        handleKeyboardOverlap(view, initKeyboardHandler())
     }
 
-    private fun handleKeyboardOverlap(view: View) {
-        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
-            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            v.updatePadding(bottom = if (imeVisible) imeInsets.bottom else 0)
-            insets
+    private fun handleKeyboardOverlap(view: View, applyKeyboardHandle: Boolean) {
+        if (applyKeyboardHandle) {
+            ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+                val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+                val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+                v.updatePadding(bottom = if (imeVisible) imeInsets.bottom else 0)
+                insets
+            }
         }
     }
 
@@ -77,6 +79,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 //    should you add the inset function in here or nah ?
 
     abstract fun initInsets(): Boolean
+    abstract fun initKeyboardHandler(): Boolean
     abstract fun initIntent()
     abstract fun initUI()
     abstract fun initAction()

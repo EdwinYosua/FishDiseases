@@ -19,6 +19,8 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun initInsets(): Boolean = false
 
+    override fun initKeyboardHandler(): Boolean = false
+
     override fun initIntent() {}
 
     override fun initUI() {}
