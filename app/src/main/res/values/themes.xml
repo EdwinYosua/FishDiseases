@@ -25,6 +25,10 @@
         <item name="android:textSize">27sp</item>
     </style>
 
+    <style name="MediumButtonText" parent="TextBold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="EditText" parent="TextArvo">
         <item name="background">@drawable/bg_edit_text</item>
     </style>
