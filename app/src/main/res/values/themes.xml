@@ -33,6 +33,10 @@
         <item name="background">@drawable/bg_edit_text</item>
     </style>
 
+    <style name="SmallText" parent="TextArvo">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
     <style name="Theme.FishDiseasesApp" parent="Base.Theme.FishDiseasesApp" />
 </resources>
