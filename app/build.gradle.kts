@@ -54,6 +54,20 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    //koin
+    implementation (libs.koin.core)
+    implementation (libs.koin.android)
+    implementation (libs.koin.android.viewmodel)
+
+    implementation(libs.converter.gson)//gson convertor
+
+    //retrofit
+    implementation(libs.retrofit)
+
+    //OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
     //navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
