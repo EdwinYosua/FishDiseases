@@ -56,6 +56,13 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    //dataStore
+    implementation(libs.androidx.datastore.preferences)
+
+    //coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+
     //koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
