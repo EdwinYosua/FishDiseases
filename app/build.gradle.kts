@@ -17,6 +17,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "AUTH_URL", "\"${project.findProperty("AUTH_URL")}\"")
+        buildConfigField("String", "MODEL_URL", "\"${project.findProperty("MODEL_URL")}\"")
     }
 
     buildTypes {
@@ -55,9 +57,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     //koin
-    implementation (libs.koin.core)
-    implementation (libs.koin.android)
-    implementation (libs.koin.android.viewmodel)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     implementation(libs.converter.gson)//gson convertor
 

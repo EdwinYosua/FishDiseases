@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.api
+package com.edwinyosua.fishdiseasesapp.api.auth
 
 import com.edwinyosua.fishdiseasesapp.api.response.LoginResponse
 import retrofit2.http.Field
