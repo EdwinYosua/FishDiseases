@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.api
+package com.edwinyosua.fishdiseasesapp.data.network
 
 sealed class ApiResult<out R> private constructor() {
     data class Success<out T>(val data: T) : ApiResult<T>()

@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.api.response
+package com.edwinyosua.fishdiseasesapp.data.network.response
 
 import com.google.gson.annotations.SerializedName
 

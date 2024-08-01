@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.local
+package com.edwinyosua.fishdiseasesapp.data.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
