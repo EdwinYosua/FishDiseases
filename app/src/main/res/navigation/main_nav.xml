@@ -89,7 +89,7 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/onBoardingFragment"
+            app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment_to_resultFragment"

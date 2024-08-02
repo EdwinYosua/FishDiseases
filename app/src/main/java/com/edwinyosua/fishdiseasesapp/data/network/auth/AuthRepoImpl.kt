@@ -24,23 +24,40 @@ class AuthRepoImpl(
             val response = authServices.login(auth.name, auth.password)
             if (!response.error) {
 //                val loginResponse = response // save response to SettingPreferences later
+
+                //koin procedure to get the module
                 unloadKoinModules(networkModule)
                 loadKoinModules(networkModule)
+
                 emit(ApiResult.Success(response))
-            } else emit(ApiResult.Error(response.message))
+            }
+
         } catch (e: HttpException) {
             e.printStackTrace()
+
+            //get the error message from API
             val errBody = e.response()?.errorBody()?.string()
             val errResponse = errBody?.let {
                 Gson().fromJson<ErrorResponse>(it, object : TypeToken<ErrorResponse>() {}.type)
             }
+
+            //emit the error message from API
             val errMsg = errResponse?.message ?: e.message()
             emit(ApiResult.Error(errMsg))
+
         } catch (e: Exception) {
             e.printStackTrace()
             emit(ApiResult.Error(e.message.toString()))
         }
     }
 
+    override fun logout(): Boolean {
+        return try {
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
 
 }

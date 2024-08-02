@@ -16,6 +16,7 @@ class CustomButtonMain : AppCompatButton {
     private var txtColorPressed: Int = 0
     private var defaultBtnBackground: Drawable
     private var pressedBtnBackground: Drawable
+    private var disabledBtnBackground: Drawable
 
     init {
 
@@ -25,6 +26,8 @@ class CustomButtonMain : AppCompatButton {
             ContextCompat.getDrawable(context, R.drawable.bg_button_main) as Drawable
         pressedBtnBackground =
             ContextCompat.getDrawable(context, R.drawable.bg_btn_main_pressed) as Drawable
+        disabledBtnBackground =
+            ContextCompat.getDrawable(context, R.drawable.bg_btn_main_disabled) as Drawable
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -36,12 +39,13 @@ class CustomButtonMain : AppCompatButton {
         if (isPressed) {
             background = pressedBtnBackground
             setTextColor(txtColorPressed)
-        } else {
+        } else if (!isEnabled) {
+            background = disabledBtnBackground
+            setTextColor(txtColor)
+        } else if (isEnabled) {
             background = defaultBtnBackground
             setTextColor(txtColor)
         }
-
-
 
         textAlignment = TEXT_ALIGNMENT_CENTER
 

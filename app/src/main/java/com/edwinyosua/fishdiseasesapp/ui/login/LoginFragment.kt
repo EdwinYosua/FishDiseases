@@ -56,10 +56,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     is ApiResult.Success -> {
                         Toast.makeText(requireContext(), "SUCCESS", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        disableButton(true)
                     }
 
                     is ApiResult.Error -> {
                         Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        disableButton(true)
                     }
 
                     ApiResult.Loading -> {
@@ -68,6 +70,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                             "LOADING",
                             Toast.LENGTH_SHORT
                         ).show()
+                        disableButton(false)
                     }
                 }
             }
@@ -76,4 +79,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun initObservers() {}
 
+    private fun disableButton(enabled: Boolean) {
+        binding.apply {
+            btnLogin.isEnabled = enabled
+            btnSignUp.isEnabled = enabled
+        }
+    }
 }

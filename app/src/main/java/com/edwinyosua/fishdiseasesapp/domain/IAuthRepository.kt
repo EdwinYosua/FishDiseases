@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface IAuthRepository {
     fun login(auth: LoginResult): Flow<ApiResult<LoginResponse>>
+    fun logout(): Boolean
 }
