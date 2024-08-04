@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/menuBG"
+    android:background="@color/colorPrimary"
     android:paddingHorizontal="46dp"
     tools:context=".ui.OnBoardingFragment">
 

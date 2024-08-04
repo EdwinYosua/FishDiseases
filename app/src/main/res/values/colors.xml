@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="menuBG">#93d2f6</color>
+    <color name="colorPrimary">#93d2f6</color>
     <color name="btnTextColor">#4FA6E9</color>
     <color name="titleTextColor">#3A83B2</color>
+    <color name="prgBarColor">#5980aa</color>
 </resources>

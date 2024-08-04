@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/menuBG"
+    android:background="@color/colorPrimary"
     android:fillViewport="true"
     tools:context=".ui.login.LoginFragment">
 
@@ -100,7 +100,17 @@
                 android:text="@string/forgot_your_account"
                 android:textColor="#3A83B2" />
 
-
         </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/prog_bar"
+            android:layout_width="match_parent"
+            app:indicatorColor="@color/prgBarColor"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

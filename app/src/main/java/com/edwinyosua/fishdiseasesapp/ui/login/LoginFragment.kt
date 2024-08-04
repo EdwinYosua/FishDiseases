@@ -54,22 +54,25 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             loginViewModel.loginResult.observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is ApiResult.Success -> {
+                        progBar.hide()
                         Toast.makeText(requireContext(), "SUCCESS", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         disableButton(true)
                     }
 
                     is ApiResult.Error -> {
+                        progBar.hide()
                         Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                         disableButton(true)
                     }
 
                     ApiResult.Loading -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "LOADING",
-                            Toast.LENGTH_SHORT
-                        ).show()
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "LOADING",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+                        progBar.show()
                         disableButton(false)
                     }
                 }
