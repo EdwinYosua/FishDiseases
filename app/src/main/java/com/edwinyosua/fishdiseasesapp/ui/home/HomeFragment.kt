@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentHomeBinding
+import com.edwinyosua.fishdiseasesapp.utils.ext.dialogFragment
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -33,11 +34,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             btnImgLogout.setOnClickListener {
-                homeViewModel.logout()
-                //add textbox for logout confirmation later
-                Toast.makeText(requireContext(), "LOGOUT SUKSES", Toast.LENGTH_SHORT).show()
-
-                findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
+                dialogFragment(
+                    title = "Logout",
+                    positiveBttnTxt = "Yes",
+                    negativeBttnTxt = "No",
+                    onPositiveClick = {
+                        homeViewModel.logout()
+                        Toast.makeText(requireContext(), "LOGOUT SUCCESS", Toast.LENGTH_SHORT)
+                            .show()
+                        findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
+                    }
+                )
             }
         }
     }

@@ -67,11 +67,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     }
 
                     ApiResult.Loading -> {
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "LOADING",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
                         progBar.show()
                         disableButton(false)
                     }
