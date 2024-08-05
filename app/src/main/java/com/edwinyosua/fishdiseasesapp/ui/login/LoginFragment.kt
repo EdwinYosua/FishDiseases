@@ -9,6 +9,7 @@ import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentLoginBinding
+import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
@@ -55,14 +56,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 when (result) {
                     is ApiResult.Success -> {
                         progBar.hide()
-                        Toast.makeText(requireContext(), "SUCCESS", Toast.LENGTH_SHORT).show()
+                        Toasty.success(requireContext(), "You are logged in !", Toast.LENGTH_SHORT)
+                            .show()
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         disableButton(true)
                     }
 
                     is ApiResult.Error -> {
                         progBar.hide()
-                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
+                        Toasty.error(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                         disableButton(true)
                     }
 

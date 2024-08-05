@@ -9,6 +9,7 @@ import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentHomeBinding
 import com.edwinyosua.fishdiseasesapp.utils.ext.dialogFragment
+import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -40,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     negativeBttnTxt = "No",
                     onPositiveClick = {
                         homeViewModel.logout()
-                        Toast.makeText(requireContext(), "LOGOUT SUCCESS", Toast.LENGTH_SHORT)
+                        Toasty.success(requireContext(), "You are logged out !", Toast.LENGTH_SHORT)
                             .show()
                         findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
                     }

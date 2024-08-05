@@ -5,5 +5,5 @@
     <color name="menuBg">#93d2f6</color>
     <color name="btnTextColor">#4FA6E9</color>
     <color name="titleTextColor">#3A83B2</color>
-    <color name="prgBarColor">#78dade</color>
+    <color name="prgBarColor">#4fa6e9</color>
 </resources>

@@ -105,10 +105,10 @@
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/prog_bar"
             android:layout_width="match_parent"
-            app:indicatorColor="@color/prgBarColor"
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="gone"
+            app:indicatorColor="@color/prgBarColor"
             app:layout_constraintTop_toTopOf="parent" />
 
 

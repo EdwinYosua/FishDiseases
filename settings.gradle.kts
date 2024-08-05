@@ -16,8 +16,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        maven { url = uri("https://jitpack.io") }
     }
 }
+
+
 
 rootProject.name = "FishDiseasesApp"
 include(":app")

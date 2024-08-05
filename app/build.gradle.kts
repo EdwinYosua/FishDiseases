@@ -46,6 +46,9 @@ android {
 
 dependencies {
 
+    //Toasty
+    implementation(libs.toasty)
+
     //splashscreen
     implementation(libs.androidx.core.splashscreen)
 
