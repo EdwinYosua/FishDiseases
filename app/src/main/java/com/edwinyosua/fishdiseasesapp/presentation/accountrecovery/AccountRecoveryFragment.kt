@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.ui.accountrecovery
+package com.edwinyosua.fishdiseasesapp.presentation.accountrecovery
 
 import android.os.Bundle
 import android.view.LayoutInflater

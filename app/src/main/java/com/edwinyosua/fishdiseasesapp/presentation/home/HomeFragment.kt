@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.ui.home
+package com.edwinyosua.fishdiseasesapp.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

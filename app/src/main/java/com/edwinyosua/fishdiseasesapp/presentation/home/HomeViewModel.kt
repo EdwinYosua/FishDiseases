@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.ui.home
+package com.edwinyosua.fishdiseasesapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import com.edwinyosua.fishdiseasesapp.domain.IAuthRepository

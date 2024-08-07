@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/menuBg"
     android:fillViewport="true"
-    tools:context=".ui.register.RegisterFragment">
+    tools:context=".presentation.register.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.edwinyosua.fishdiseasesapp.ui.component.CustomButtonMain
+            <com.edwinyosua.fishdiseasesapp.presentation.component.CustomButtonMain
                 android:id="@+id/btn_sign_up"
                 style="@style/ButtonText"
                 android:layout_width="match_parent"

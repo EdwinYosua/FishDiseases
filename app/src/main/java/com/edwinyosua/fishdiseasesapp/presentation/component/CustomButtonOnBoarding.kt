@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.ui.component
+package com.edwinyosua.fishdiseasesapp.presentation.component
 
 import android.content.Context
 import android.graphics.Canvas

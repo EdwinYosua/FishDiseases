@@ -1,7 +1,7 @@
 package com.edwinyosua.fishdiseasesapp.di.modules
 
-import com.edwinyosua.fishdiseasesapp.ui.home.HomeViewModel
-import com.edwinyosua.fishdiseasesapp.ui.login.LoginViewModel
+import com.edwinyosua.fishdiseasesapp.presentation.home.HomeViewModel
+import com.edwinyosua.fishdiseasesapp.presentation.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

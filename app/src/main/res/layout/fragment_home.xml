@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".presentation.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                     app:layout_constraintDimensionRatio="1" />
 
 
-                <com.edwinyosua.fishdiseasesapp.ui.component.CustomButtonMain
+                <com.edwinyosua.fishdiseasesapp.presentation.component.CustomButtonMain
                     android:id="@+id/btn_camera"
                     style="@style/MediumButtonText"
                     android:layout_width="0dp"
@@ -78,7 +78,7 @@
                     app:layout_constraintEnd_toStartOf="@id/btn_gallery"
                     app:layout_constraintStart_toStartOf="@id/btn_analyze" />
 
-                <com.edwinyosua.fishdiseasesapp.ui.component.CustomButtonMain
+                <com.edwinyosua.fishdiseasesapp.presentation.component.CustomButtonMain
                     android:id="@+id/btn_gallery"
                     style="@style/MediumButtonText"
                     android:layout_width="0dp"
@@ -91,7 +91,7 @@
                     app:layout_constraintEnd_toEndOf="@id/btn_analyze"
                     app:layout_constraintStart_toEndOf="@id/btn_camera" />
 
-                <com.edwinyosua.fishdiseasesapp.ui.component.CustomButtonMain
+                <com.edwinyosua.fishdiseasesapp.presentation.component.CustomButtonMain
                     android:id="@+id/btn_analyze"
                     style="@style/ButtonText"
                     android:layout_width="match_parent"

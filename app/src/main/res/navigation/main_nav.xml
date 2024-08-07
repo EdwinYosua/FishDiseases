@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.OnBoardingFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.login.LoginFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.register.RegisterFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.home.HomeFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -104,12 +104,12 @@
     </fragment>
     <fragment
         android:id="@+id/accountRecoveryFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.accountrecovery.AccountRecoveryFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.accountrecovery.AccountRecoveryFragment"
         android:label="fragment_account_recovery"
         tools:layout="@layout/fragment_account_recovery" />
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.ui.result.ResultFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.result.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result">
         <action

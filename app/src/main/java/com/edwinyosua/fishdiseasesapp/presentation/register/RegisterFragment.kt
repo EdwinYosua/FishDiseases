@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.ui
+package com.edwinyosua.fishdiseasesapp.presentation.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,20 +6,19 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
-import com.edwinyosua.fishdiseasesapp.databinding.FragmentOnBoardingBinding
-
-class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
+import com.edwinyosua.fishdiseasesapp.databinding.FragmentRegisterBinding
 
 
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentOnBoardingBinding = FragmentOnBoardingBinding.inflate(inflater, container, false)
+    ): FragmentRegisterBinding = FragmentRegisterBinding.inflate(inflater, container, false)
 
     override fun initInsets(): Boolean = false
 
-    override fun initKeyboardHandler(): Boolean = false
+    override fun initKeyboardHandler(): Boolean = true
 
     override fun initIntent() {}
 
@@ -27,11 +26,11 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun initAction() {
         binding.apply {
-            btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
+            btnSignUp.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
-            btnRegister.setOnClickListener {
-                findNavController().navigate(R.id.action_onBoardingFragment_to_registerFragment)
+            txvLinkLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
         }
     }
