@@ -2,9 +2,10 @@ package com.edwinyosua.fishdiseasesapp.data.network.auth
 
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
-import com.edwinyosua.fishdiseasesapp.data.network.response.LoginResponse
 import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
 import com.edwinyosua.fishdiseasesapp.domain.auth.IAuthRepository
+import com.edwinyosua.fishdiseasesapp.domain.auth.entities.Login
+import com.edwinyosua.fishdiseasesapp.domain.auth.mapper.toDomain
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ import retrofit2.HttpException
 class AuthRepository(
     private val authServices: AuthServices,
 ) : IAuthRepository {
-    override fun login(email: String, pass: String): Flow<ApiResult<LoginResponse>> = flow {
+    override fun login(email: String, pass: String): Flow<ApiResult<Login>> = flow {
         try {
             emit(ApiResult.Loading)
             val response = authServices.login(email, pass)
@@ -27,7 +28,7 @@ class AuthRepository(
                 unloadKoinModules(networkModule)
                 loadKoinModules(networkModule)
 
-                emit(ApiResult.Success(response))
+                emit(ApiResult.Success(response.toDomain()))
             }
 
         } catch (e: HttpException) {
