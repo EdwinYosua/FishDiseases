@@ -20,10 +20,6 @@ data class LoginResponse(
 //	val token: String? = null
 )
 
-data class LoginResult(
-    val name: String,
-    val password: String,
-)
 
 data class ErrorResponse(
     val error: Boolean,

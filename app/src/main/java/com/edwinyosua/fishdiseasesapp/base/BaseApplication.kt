@@ -12,9 +12,11 @@ class BaseApplication : Application() {
 
         startKoin {
             modules(
-                authModule,
-                networkModule,
-                viewModelModule
+                listOf(
+                    authModule,
+                    networkModule,
+                    viewModelModule
+                )
             )
         }
     }

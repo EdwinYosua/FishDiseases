@@ -3,9 +3,8 @@ package com.edwinyosua.fishdiseasesapp.data.network.auth
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
 import com.edwinyosua.fishdiseasesapp.data.network.response.LoginResponse
-import com.edwinyosua.fishdiseasesapp.data.network.response.LoginResult
 import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
-import com.edwinyosua.fishdiseasesapp.domain.IAuthRepository
+import com.edwinyosua.fishdiseasesapp.domain.auth.IAuthRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
@@ -14,14 +13,13 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import retrofit2.HttpException
 
-class AuthRepoImpl(
+class AuthRepository(
     private val authServices: AuthServices,
-//    private val pref : SettingPreference // save response to SettingPreferences later
 ) : IAuthRepository {
-    override fun login(auth: LoginResult): Flow<ApiResult<LoginResponse>> = flow {
+    override fun login(email: String, pass: String): Flow<ApiResult<LoginResponse>> = flow {
         try {
             emit(ApiResult.Loading)
-            val response = authServices.login(auth.name, auth.password)
+            val response = authServices.login(email, pass)
             if (!response.error) {
 //                val loginResponse = response // save response to SettingPreferences later
 
@@ -50,14 +48,14 @@ class AuthRepoImpl(
             emit(ApiResult.Error(e.message.toString()))
         }
     }
-
-    override fun logout(): Boolean {
-        return try {
-            true
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        }
-    }
+//
+//    override fun logout(): Boolean {
+//        return try {
+//            true
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            false
+//        }
+//    }
 
 }
