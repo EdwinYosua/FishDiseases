@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     positiveBttnTxt = "Yes",
                     negativeBttnTxt = "No",
                     onPositiveClick = {
-                        homeViewModel.logout()
+//                        homeViewModel.logout()
                         Toasty.success(requireContext(), "You are logged out !", Toast.LENGTH_SHORT)
                             .show()
                         findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
