@@ -1,5 +1,6 @@
 package com.edwinyosua.fishdiseasesapp.data.network.auth
 
+import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
 import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
@@ -16,6 +17,7 @@ import retrofit2.HttpException
 
 class AuthRepository(
     private val authServices: AuthServices,
+    private val dataStore: SettingPreference
 ) : IAuthRepository {
     override fun login(email: String, pass: String): Flow<ApiResult<Login>> = flow {
         try {
@@ -23,6 +25,7 @@ class AuthRepository(
             val response = authServices.login(email, pass)
             if (!response.error) {
 //                val loginResponse = response // save response to SettingPreferences later
+                dataStore.saveUserLoginData(response.userId)
 
                 //koin procedure to get the module
                 unloadKoinModules(networkModule)
@@ -49,14 +52,6 @@ class AuthRepository(
             emit(ApiResult.Error(e.message.toString()))
         }
     }
-//
-//    override fun logout(): Boolean {
-//        return try {
-//            true
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            false
-//        }
-//    }
+
 
 }

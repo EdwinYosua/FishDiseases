@@ -9,31 +9,42 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
 
-class SettingPreference private constructor(
-    private val dataStore: DataStore<Preferences>
+class SettingPreference(
+    private val context: Context
 ) {
 
     private val userId = stringPreferencesKey("userId")
+//    private val isUserLogin = booleanPreferencesKey("isLogin")
 //    private val userName = stringPreferencesKey("userName")
 
+//    fun checkUserLogin(): Flow<Boolean?> {
+//        return context.dataStore.data.map { pref ->
+//            pref[this.isUserLogin] ?: false
+//        }
+//    }
+
     fun getUserId(): Flow<String?> {
-        return dataStore.data.map { pref ->
-            pref[userId]
+        return context.dataStore.data.map { pref ->
+            pref[this.userId]
         }
     }
 
     suspend fun saveUserLoginData(userId: String) {
-        dataStore.edit { pref ->
+        context.dataStore.edit { pref ->
             pref[this.userId] = userId
+//            pref[this.isUserLogin] = true
         }
     }
 
     suspend fun clearUserLoginData() {
-        dataStore.edit { pref ->
+        context.dataStore.edit { pref ->
             pref.remove(userId)
+//            pref[this.isUserLogin] = false
         }
     }
 
 }
+
+

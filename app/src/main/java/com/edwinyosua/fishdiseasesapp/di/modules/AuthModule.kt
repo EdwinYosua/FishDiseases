@@ -12,6 +12,7 @@ val authModule = module {
     factory<AuthUseCase> { AuthInteractor(get()) }
 
     single { AuthInteractor(get()) }
-    single<IAuthRepository> { AuthRepository(get()) }
+
+    single<IAuthRepository> { AuthRepository(get(), get()) }
 
 }
