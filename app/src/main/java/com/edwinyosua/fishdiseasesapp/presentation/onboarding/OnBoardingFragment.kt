@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.presentation
+package com.edwinyosua.fishdiseasesapp.presentation.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,12 @@ import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentOnBoardingBinding
+import org.koin.android.ext.android.inject
 
 class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
+
+
+    private val onBoardingViewModel: OnBoardingViewModel by inject()
 
 
     override fun getViewBinding(
@@ -38,6 +42,14 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun initProcess() {}
 
-    override fun initObservers() {}
+    override fun initObservers() {
 
+        //why is this still called after login button pressed ?
+        onBoardingViewModel.checkLogin().observe(requireActivity()) { userId ->
+            if (userId != null) {
+                findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
+            }
+
+        }
+    }
 }

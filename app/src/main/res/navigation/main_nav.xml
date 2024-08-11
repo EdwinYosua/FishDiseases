@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.edwinyosua.fishdiseasesapp.presentation.OnBoardingFragment"
+        android:name="com.edwinyosua.fishdiseasesapp.presentation.onboarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding">
         <action
@@ -25,6 +25,16 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
