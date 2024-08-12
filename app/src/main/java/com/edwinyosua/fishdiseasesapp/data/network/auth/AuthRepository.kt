@@ -29,24 +29,12 @@ class AuthRepository(
                 dataStore.saveUserLoginData(response.userId)
 
                 //koin procedure to get the module
-                unloadKoinModules(networkModule)
-                loadKoinModules(networkModule)
-
+                reloadKoin()
                 emit(ApiResult.Success(response.toDomain()))
             }
 
         } catch (e: HttpException) {
             e.printStackTrace()
-//
-//            //get the error message from API
-//            val errBody = e.response()?.errorBody()?.string()
-//            val errResponse = errBody?.let {
-//                Gson().fromJson<ErrorResponse>(it, object : TypeToken<ErrorResponse>() {}.type)
-//            }
-//
-//            //emit the error message from API
-//            val errMsg = errResponse?.message ?: e.message()
-//
             emit(ApiResult.Error(printApiErrorMsg(e)))
 
         } catch (e: Exception) {
@@ -64,6 +52,7 @@ class AuthRepository(
                 if (!response.error) {
                     Log.d("AuthRepository", "Register Success")
 
+                    reloadKoin()
                     emit(ApiResult.Success(response.login.toDomain()))
                 }
 
@@ -88,6 +77,12 @@ class AuthRepository(
 
         //emit the error message from API
         return errResponse?.message ?: e.message()
+    }
+
+    private fun reloadKoin() {
+        //koin procedure to get the module
+        unloadKoinModules(networkModule)
+        loadKoinModules(networkModule)
     }
 
 
