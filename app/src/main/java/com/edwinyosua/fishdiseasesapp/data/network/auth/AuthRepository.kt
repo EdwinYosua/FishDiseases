@@ -1,5 +1,6 @@
 package com.edwinyosua.fishdiseasesapp.data.network.auth
 
+import android.util.Log
 import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
@@ -36,21 +37,57 @@ class AuthRepository(
 
         } catch (e: HttpException) {
             e.printStackTrace()
-
-            //get the error message from API
-            val errBody = e.response()?.errorBody()?.string()
-            val errResponse = errBody?.let {
-                Gson().fromJson<ErrorResponse>(it, object : TypeToken<ErrorResponse>() {}.type)
-            }
-
-            //emit the error message from API
-            val errMsg = errResponse?.message ?: e.message()
-            emit(ApiResult.Error(errMsg))
+//
+//            //get the error message from API
+//            val errBody = e.response()?.errorBody()?.string()
+//            val errResponse = errBody?.let {
+//                Gson().fromJson<ErrorResponse>(it, object : TypeToken<ErrorResponse>() {}.type)
+//            }
+//
+//            //emit the error message from API
+//            val errMsg = errResponse?.message ?: e.message()
+//
+            emit(ApiResult.Error(printApiErrorMsg(e)))
 
         } catch (e: Exception) {
             e.printStackTrace()
             emit(ApiResult.Error(e.message.toString()))
         }
+    }
+
+    override fun register(name: String, email: String, pass: String): Flow<ApiResult<Login>> =
+        flow {
+            try {
+                emit(ApiResult.Loading)
+
+                val response = authServices.register(name, email, pass)
+                if (!response.error) {
+                    Log.d("AuthRepository", "Register Success")
+
+                    emit(ApiResult.Success(response.login.toDomain()))
+                }
+
+            } catch (e: HttpException) {
+                e.printStackTrace()
+                emit(ApiResult.Error(printApiErrorMsg(e)))
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emit(ApiResult.Error(e.message.toString()))
+            }
+        }
+
+
+    private fun printApiErrorMsg(e: HttpException): String {
+
+        //get the error message from API
+        val errorBody = e.response()?.errorBody()?.string()
+        val errResponse = errorBody?.let {
+            Gson().fromJson<ErrorResponse>(it, object : TypeToken<ErrorResponse>() {}.type)
+        }
+
+        //emit the error message from API
+        return errResponse?.message ?: e.message()
     }
 
 
