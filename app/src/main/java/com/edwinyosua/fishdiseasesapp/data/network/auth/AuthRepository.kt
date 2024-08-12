@@ -1,6 +1,5 @@
 package com.edwinyosua.fishdiseasesapp.data.network.auth
 
-import android.util.Log
 import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
@@ -47,15 +46,12 @@ class AuthRepository(
         flow {
             try {
                 emit(ApiResult.Loading)
-
                 val response = authServices.register(name, email, pass)
                 if (!response.error) {
-                    Log.d("AuthRepository", "Register Success")
 
                     reloadKoin()
                     emit(ApiResult.Success(response.login.toDomain()))
                 }
-
             } catch (e: HttpException) {
                 e.printStackTrace()
                 emit(ApiResult.Error(printApiErrorMsg(e)))
@@ -63,6 +59,7 @@ class AuthRepository(
             } catch (e: Exception) {
                 e.printStackTrace()
                 emit(ApiResult.Error(e.message.toString()))
+
             }
         }
 

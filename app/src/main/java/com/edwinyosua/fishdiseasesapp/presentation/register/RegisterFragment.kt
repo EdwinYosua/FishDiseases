@@ -27,7 +27,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     override fun initAction() {
         binding.apply {
             btnSignUp.setOnClickListener {
-                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+//                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
             txvLinkLogin.setOnClickListener {
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
