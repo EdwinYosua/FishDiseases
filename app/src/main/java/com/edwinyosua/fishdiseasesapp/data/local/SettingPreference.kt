@@ -16,20 +16,7 @@ class SettingPreference(
 ) {
 
     private val userId = stringPreferencesKey("userId")
-//    private val isUserLogin = booleanPreferencesKey("isLogin")
-//    private val userName = stringPreferencesKey("userName")
 
-//    fun checkUserLogin(): Flow<Boolean?> {
-//        return context.dataStore.data.map { pref ->
-//            pref[this.isUserLogin] ?: false
-//        }
-//    }
-
-//    fun getUserId(): Flow<String?> {
-//        return context.dataStore.data.map { pref ->
-//            pref[this.userId]
-//        }
-//    }
 
     suspend fun getUserId(): String? {
         val userId = context.dataStore.data.first()
