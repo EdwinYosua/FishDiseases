@@ -14,7 +14,7 @@ data class LoginResponse(
     val userId: String?,
 
     @field:SerializedName("error")
-    val error: Boolean,
+    val error: Boolean?,
 
 //	@field:SerializedName("token")
 //	val token: String? = null

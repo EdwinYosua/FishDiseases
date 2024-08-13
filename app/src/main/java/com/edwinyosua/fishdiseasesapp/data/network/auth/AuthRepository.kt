@@ -24,7 +24,7 @@ class AuthRepository(
         try {
             emit(ApiResult.Loading)
             val response = authServices.login(email, pass)
-            if (!response.error) {
+            if (response.error != true) {
 //                val loginResponse = response // save response to SettingPreferences later
                 response.userId?.let {
                     dataStore.saveUserLoginData(it)
