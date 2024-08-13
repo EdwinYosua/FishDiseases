@@ -6,5 +6,5 @@ data class Login(
     val name: String = emptyString(),
     val message: String = emptyString(),
     val userId: String = emptyString(),
-    val error: Boolean,
+    val error: Boolean = false,
 )
