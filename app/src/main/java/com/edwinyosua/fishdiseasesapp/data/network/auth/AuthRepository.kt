@@ -6,6 +6,7 @@ import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
 import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
 import com.edwinyosua.fishdiseasesapp.domain.auth.IAuthRepository
 import com.edwinyosua.fishdiseasesapp.domain.auth.entities.Login
+import com.edwinyosua.fishdiseasesapp.domain.auth.entities.Register
 import com.edwinyosua.fishdiseasesapp.domain.auth.mapper.toDomain
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -25,7 +26,9 @@ class AuthRepository(
             val response = authServices.login(email, pass)
             if (!response.error) {
 //                val loginResponse = response // save response to SettingPreferences later
-                dataStore.saveUserLoginData(response.userId)
+                response.userId?.let {
+                    dataStore.saveUserLoginData(it)
+                }
 
                 //koin procedure to get the module
                 reloadKoin()
@@ -42,15 +45,15 @@ class AuthRepository(
         }
     }
 
-    override fun register(name: String, email: String, pass: String): Flow<ApiResult<Login>> =
+    override fun register(name: String, email: String, pass: String): Flow<ApiResult<Register>> =
         flow {
             try {
                 emit(ApiResult.Loading)
                 val response = authServices.register(name, email, pass)
-                if (!response.error) {
+                if (response.error != true) {
 
                     reloadKoin()
-                    emit(ApiResult.Success(response.login.toDomain()))
+                    emit(ApiResult.Success(response.toDomain()))
                 }
             } catch (e: HttpException) {
                 e.printStackTrace()
