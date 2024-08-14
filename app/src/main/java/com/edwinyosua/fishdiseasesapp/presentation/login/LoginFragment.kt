@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentLoginBinding
-import es.dmoral.toasty.Toasty
+import com.edwinyosua.fishdiseasesapp.utils.ext.toastyMsg
 import org.koin.android.ext.android.inject
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
@@ -38,17 +37,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 val email = editEmail.text?.trim().toString()
                 val pass = editPassword.text?.trim().toString()
 
-                if (pass.isEmpty()) toastyMsg("Field Password is Empty !", 2)
+                if (pass.isEmpty()) toastyMsg(requireContext(), "Field Password is Empty !", 2)
 //                    Toasty.error(requireContext(), "Field Password is Empty !", Toast.LENGTH_SHORT).show()
 
-                if (email.isEmpty()) toastyMsg("Field Email is Empty !", 2)
+                if (email.isEmpty()) toastyMsg(requireContext(), "Field Email is Empty !", 2)
 //                    Toasty.error(requireContext(),"Field Email is Empty !", Toast.LENGTH_SHORT).show()
 
 
                 if (
                     !Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
                     email.isNotEmpty()
-                ) toastyMsg("Wrong Email Format !", 2)
+                ) toastyMsg(requireContext(), "Wrong Email Format !", 2)
 //                    Toasty.error(requireContext(), "Wrong Email Format !", Toast.LENGTH_SHORT).show()
 
                 if ((email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) &&
@@ -56,6 +55,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 ) {
                     loginViewModel.login(email, pass)
                 }
+
             }
             btnSignUp.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -74,7 +74,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     is ApiResult.Success -> {
                         progBar.hide()
 //                        Toasty.success(requireContext(), "You are logged in !", Toast.LENGTH_SHORT).show()
-                        toastyMsg("You are Logged in !", 1)
+                        toastyMsg(requireContext(), "You are Logged in !", 1)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         disableButton(true)
                     }
@@ -82,7 +82,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     is ApiResult.Error -> {
                         progBar.hide()
 //                        Toasty.error(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                        toastyMsg(result.error, 0)
+                        toastyMsg(requireContext(), result.error, 0)
                         disableButton(true)
                     }
 
@@ -96,33 +96,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initObservers() {}
-
-    private fun toastyMsg(msg: String, status: Int) {
-
-        Toasty.Config.getInstance()
-            .allowQueue(false)
-            .apply()
-
-
-        when (status) {
-
-            0 -> Toasty.error(requireContext(), msg, Toast.LENGTH_SHORT).show()
-            1 -> Toasty.success(requireContext(), msg, Toast.LENGTH_SHORT).show()
-            2 -> Toasty.info(requireContext(), msg, Toast.LENGTH_SHORT).show()
-            3 -> Toasty.warning(requireContext(), msg, Toast.LENGTH_SHORT).show()
-            else -> Toasty.normal(requireContext(), msg, Toast.LENGTH_SHORT).show()
-        }
-
-
-//        if (success) {
-//            Toasty.success(requireContext(), msg, Toast.LENGTH_SHORT).show()
-//        }
-//
-//        if (!success) {
-//            Toasty.error(requireContext(), msg, Toast.LENGTH_SHORT).show()
-//        }
-    }
-
     private fun disableButton(enabled: Boolean) {
         binding.apply {
             btnLogin.isEnabled = enabled
