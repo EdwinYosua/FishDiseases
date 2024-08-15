@@ -9,6 +9,7 @@ import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentLoginBinding
+import com.edwinyosua.fishdiseasesapp.utils.ext.isEmailValid
 import com.edwinyosua.fishdiseasesapp.utils.ext.toastyMsg
 import org.koin.android.ext.android.inject
 
@@ -37,24 +38,32 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 val email = editEmail.text?.trim().toString()
                 val pass = editPassword.text?.trim().toString()
 
+
+
+                if (pass.length < 8) toastyMsg(
+                    requireContext(),
+                    "Password is Less Than 8 Character",
+                    2
+                )
+
                 if (pass.isEmpty()) toastyMsg(requireContext(), "Field Password is Empty !", 2)
-//                    Toasty.error(requireContext(), "Field Password is Empty !", Toast.LENGTH_SHORT).show()
 
                 if (email.isEmpty()) toastyMsg(requireContext(), "Field Email is Empty !", 2)
-//                    Toasty.error(requireContext(),"Field Email is Empty !", Toast.LENGTH_SHORT).show()
-
 
                 if (
                     !Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
                     email.isNotEmpty()
                 ) toastyMsg(requireContext(), "Wrong Email Format !", 2)
-//                    Toasty.error(requireContext(), "Wrong Email Format !", Toast.LENGTH_SHORT).show()
 
-                if ((email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) &&
-                    pass.isNotEmpty()
-                ) {
-                    loginViewModel.login(email, pass)
+
+
+
+                when {
+                    email.isEmailValid() && pass.length >= 8 -> {
+                        loginViewModel.login(email, pass)
+                    }
                 }
+
 
             }
             btnSignUp.setOnClickListener {
@@ -96,6 +105,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initObservers() {}
+
+
     private fun disableButton(enabled: Boolean) {
         binding.apply {
             btnLogin.isEnabled = enabled
