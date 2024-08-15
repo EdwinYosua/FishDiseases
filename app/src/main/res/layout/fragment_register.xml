@@ -124,6 +124,16 @@
                 android:textColor="#3A83B2" />
 
         </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/prog_bar"
+            android:indeterminate="true"
+            app:indicatorColor="@color/prgBarColor"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
 

@@ -48,13 +48,23 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
                 if (pass != passConfirm) toastyMsg(requireContext(), "Password Doesn't Match", 2)
 
-                if (passConfirm.isEmpty()) toastyMsg(requireContext(), "Confirmation Password is Empty !", 2)
+                if (passConfirm.isEmpty()) toastyMsg(
+                    requireContext(),
+                    "Confirmation Password is Empty !",
+                    2
+                )
 
-                if(pass.length < 8) toastyMsg(requireContext(), "Password is Less Than 8 Character", 2)
+                if (pass.length < 8) toastyMsg(
+                    requireContext(),
+                    "Password is Less Than 8 Character",
+                    2
+                )
 
                 if (pass.isEmpty()) toastyMsg(requireContext(), "Password is Empty !", 2)
 
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()) toastyMsg(requireContext(), "Wrong Email Format !", 2)
+                if (!Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches() && email.isNotEmpty()
+                ) toastyMsg(requireContext(), "Wrong Email Format !", 2)
 
                 if (email.isEmpty()) toastyMsg(requireContext(), "Email is Empty !", 2)
 
@@ -66,14 +76,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     }
                 }
 
-
-//                if (
-//                    name.isNotEmpty() &&
-//                    (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) &&
-//                    (pass.isNotEmpty() && pass == passConfirm)
-//                ) {
-//                    registerViewModel.register(name, email, pass)
-//                }
             }
 
             txvLinkLogin.setOnClickListener {
@@ -86,25 +88,44 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     override fun initObservers() {
 
-        registerViewModel.registerResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is ApiResult.Success -> Toasty.success(
-                    requireContext(),
-                    "Register Success",
-                    Toast.LENGTH_SHORT
-                ).show()
+        binding.apply {
 
-                is ApiResult.Error -> Toasty.error(
-                    requireContext(),
-                    result.error,
-                    Toast.LENGTH_SHORT
-                ).show()
 
-                ApiResult.Loading -> Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT)
-                    .show()
+            registerViewModel.registerResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is ApiResult.Success -> {
+                        progBar.hide()
+                        disableButton(false)
+                       toastyMsg(requireContext(), "Register Success !", 1)
+                    }
+
+                    is ApiResult.Error -> {
+                        progBar.hide()
+                        disableButton(false)
+                        toastyMsg(requireContext(), result.error, 0)
+                    }
+
+                    ApiResult.Loading -> {
+                        progBar.show()
+                        disableButton(true)
+                    }
+                }
             }
         }
+    }
 
+    private fun disableButton(isDisabled : Boolean) {
+
+        binding.apply {
+
+            if(isDisabled) {
+                btnSignUp.isEnabled = false
+                txvLinkLogin.isEnabled = false
+            } else {
+                btnSignUp.isEnabled = true
+                txvLinkLogin.isEnabled = true
+            }
+        }
     }
 
 }
