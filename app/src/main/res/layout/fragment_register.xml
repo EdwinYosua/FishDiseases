@@ -132,7 +132,7 @@
             android:id="@+id/prog_bar"
             android:indeterminate="true"
             app:indicatorColor="@color/prgBarColor"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
