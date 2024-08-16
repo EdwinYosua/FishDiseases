@@ -1,4 +1,4 @@
-package com.edwinyosua.fishdiseasesapp.utils.ext
+package com.edwinyosua.fishdiseasesapp.utils
 
 import android.content.Context
 import android.widget.Toast

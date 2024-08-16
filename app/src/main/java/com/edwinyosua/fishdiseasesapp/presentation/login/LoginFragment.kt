@@ -10,7 +10,7 @@ import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentLoginBinding
 import com.edwinyosua.fishdiseasesapp.utils.ext.isEmailValid
-import com.edwinyosua.fishdiseasesapp.utils.ext.toastyMsg
+import com.edwinyosua.fishdiseasesapp.utils.toastyMsg
 import org.koin.android.ext.android.inject
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {

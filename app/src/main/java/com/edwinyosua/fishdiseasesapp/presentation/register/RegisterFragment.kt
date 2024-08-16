@@ -10,7 +10,7 @@ import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentRegisterBinding
 import com.edwinyosua.fishdiseasesapp.utils.ext.isEmailValid
-import com.edwinyosua.fishdiseasesapp.utils.ext.toastyMsg
+import com.edwinyosua.fishdiseasesapp.utils.toastyMsg
 import org.koin.android.ext.android.inject
 
 
@@ -40,9 +40,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                 val email = editEmail.text?.trim().toString()
                 val pass = editNewPass.text?.trim().toString()
                 val passConfirm = editConfirmPass.text?.trim().toString()
-
-
-
 
                 if (pass != passConfirm) toastyMsg(requireContext(), "Password Doesn't Match", 2)
 
@@ -82,13 +79,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         }
     }
 
-    override fun initProcess() {}
-
-    override fun initObservers() {
-
+    override fun initProcess() {
         binding.apply {
-
-
             registerViewModel.registerResult.observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is ApiResult.Success -> {
@@ -112,6 +104,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
             }
         }
     }
+
+    override fun initObservers() {}
 
     private fun disableButton(isDisabled: Boolean) {
 
