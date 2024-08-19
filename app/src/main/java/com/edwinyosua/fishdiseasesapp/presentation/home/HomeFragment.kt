@@ -16,17 +16,20 @@ import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentHomeBinding
 import com.edwinyosua.fishdiseasesapp.utils.Gallery
+import com.edwinyosua.fishdiseasesapp.utils.Gallery.imgFile
 import com.edwinyosua.fishdiseasesapp.utils.ext.dialogFragment
 import com.edwinyosua.fishdiseasesapp.utils.toastyMsg
 import com.edwinyosua.fishdiseasesapp.utils.uriToFile
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import java.io.File
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val pref: SettingPreference by inject()
     private val homeViewModel: HomeViewModel by inject()
+
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -40,21 +43,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initIntent() {}
 
-    override fun initUI() {}
+    override fun initUI() {
+        binding.apply {
+            //pick image from gallery
+            Gallery.launcherGallery = registerForActivityResult(
+                ActivityResultContracts.PickVisualMedia()
+            ) { uri: Uri? ->
+                if (uri != null) {
+                    Gallery.currentImgUri = uri
+
+
+                    //set image in image preview
+                    Gallery.currentImgUri.let {
+                        Log.d("Image URI", "ShowImg: $it")
+                        previewImage.setImageURI(it)
+                    }
+                } else {
+                    Log.d("Photo Picker", "No Media Selected")
+                }
+            }
+        }
+    }
 
     override fun initAction() {
         binding.apply {
             btnAnalyze.setOnClickListener {
-//                findNavController().navigate(R.id.action_homeFragment_to_resultFragment)
-
-
-                if (Gallery.currentImgUri != null) startUploadImage() else toastyMsg(
-                    requireContext(),
-                    "No Media Selected",
-                    0
-                )
-
-
+                if (Gallery.currentImgUri != null) {
+                    homeViewModel.analyzeImage(startUploadImage())
+                } else toastyMsg(requireContext(), "No Media Selected", 0)
             }
 
             btnImgLogout.setOnClickListener {
@@ -76,28 +92,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    override fun initProcess() {
-
-        binding.apply {
-            //pick image from gallery
-            Gallery.launcherGallery = registerForActivityResult(
-                ActivityResultContracts.PickVisualMedia()
-            ) { uri: Uri? ->
-                if (uri != null) {
-                    Gallery.currentImgUri = uri
-
-
-                    //set image in image preview
-                    Gallery.currentImgUri.let {
-                        Log.d("Image URI", "ShowImg: $it")
-                        previewImage.setImageURI(it)
-                    }
-                } else {
-                    Log.d("Photo Picker", "No Media Selected")
-                }
-            }
-        }
-    }
+    override fun initProcess() {}
 
     override fun initObservers() {
 
@@ -122,13 +117,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun startUploadImage() {
-        Gallery.currentImgUri?.let { uri ->
-            val imgFile = uriToFile(uri, requireContext())
-            Log.d("Img", "Show Image ${imgFile.path}")
-            homeViewModel.analyzeImage(imgFile)
-        }
-    }
 
+    private fun startUploadImage(): File {
+        Gallery.currentImgUri?.let { uri ->
+            imgFile = uriToFile(uri, requireContext())
+            Log.d("Img", "Show Image ${imgFile.path}")
+        }
+        return imgFile
+    }
 
 }
