@@ -2,6 +2,7 @@ package com.edwinyosua.fishdiseasesapp.di.modules
 
 import com.edwinyosua.fishdiseasesapp.BuildConfig
 import com.edwinyosua.fishdiseasesapp.data.network.auth.AuthServices
+import com.edwinyosua.fishdiseasesapp.data.network.ml.ModelServices
 import com.edwinyosua.fishdiseasesapp.utils.ConstVal
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,10 +40,15 @@ val networkModule = module {
     }
 
     single { authServicesProvider(get<Retrofit>(named("auth"))) }
+    single { modelServicesProvide(get<Retrofit>(named("model"))) }
+
 }
 
 fun authServicesProvider(retrofit: Retrofit): AuthServices =
     retrofit.create(AuthServices::class.java)
+
+fun modelServicesProvide(retrofit: Retrofit): ModelServices =
+    retrofit.create(ModelServices::class.java)
 
 
 

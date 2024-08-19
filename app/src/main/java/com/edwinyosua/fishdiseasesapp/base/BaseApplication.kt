@@ -3,6 +3,7 @@ package com.edwinyosua.fishdiseasesapp.base
 import android.app.Application
 import com.edwinyosua.fishdiseasesapp.di.modules.authModule
 import com.edwinyosua.fishdiseasesapp.di.modules.dataStoreModule
+import com.edwinyosua.fishdiseasesapp.di.modules.modelModule
 import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
 import com.edwinyosua.fishdiseasesapp.di.modules.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -16,10 +17,11 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
+                    viewModelModule,
                     dataStoreModule,
                     authModule,
                     networkModule,
-                    viewModelModule
+                    modelModule
                 )
             )
         }
