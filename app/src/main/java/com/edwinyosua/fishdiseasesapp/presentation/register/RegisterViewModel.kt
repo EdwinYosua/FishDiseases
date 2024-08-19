@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class RegisterViewModel(private val authRepository: AuthUseCase) : ViewModel() {
 
     private val _registerResult = MutableLiveData<ApiResult<Register>>()
-    val registerResult: LiveData<ApiResult<Register>> = _registerResult
+    val registerResult: LiveData<ApiResult<Register>> by lazy { _registerResult }
 
 
     fun register(name: String, email: String, pass: String) {
