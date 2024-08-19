@@ -6,7 +6,7 @@ import androidx.activity.result.PickVisualMediaRequest
 
 object Gallery {
 
-    lateinit var currentImgUri: Uri
+    var currentImgUri: Uri? = null
 
     lateinit var launcherGallery: ActivityResultLauncher<PickVisualMediaRequest>
 
