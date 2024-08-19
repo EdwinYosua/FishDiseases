@@ -85,6 +85,7 @@ dependencies {
     //navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.exifinterface)
 
 
     testImplementation(libs.junit)
