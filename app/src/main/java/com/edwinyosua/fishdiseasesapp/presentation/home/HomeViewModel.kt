@@ -13,8 +13,8 @@ import java.io.File
 
 class HomeViewModel(private val modelRepository: ModelUseCase) : ViewModel() {
 
-    private val _modelResult = MutableLiveData<ApiResult<Prediction>>()
-    val modelResult: LiveData<ApiResult<Prediction>> by lazy { _modelResult }
+    private val _modelResult = MutableLiveData<ApiResult<Prediction>?>()
+    val modelResult: LiveData<ApiResult<Prediction>?> by lazy { _modelResult }
 
 
     fun analyzeImage(img: File) {
@@ -24,5 +24,9 @@ class HomeViewModel(private val modelRepository: ModelUseCase) : ViewModel() {
                 Log.d("HomeViewModel", "analyzeImg")
             }
         }
+    }
+
+    fun setToNull() {
+        _modelResult.value = null
     }
 }

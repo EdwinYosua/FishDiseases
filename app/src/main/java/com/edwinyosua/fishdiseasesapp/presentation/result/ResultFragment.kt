@@ -7,6 +7,9 @@ import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentResultBinding
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
+
+    private var predictionResultName: String? = null
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,9 +20,15 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
 
     override fun initKeyboardHandler(): Boolean = false
 
-    override fun initIntent() {}
+    override fun initIntent() {
+        predictionResultName = arguments?.getString("predictionResultName")
+    }
 
-    override fun initUI() {}
+    override fun initUI() {
+        binding.apply {
+            txvAnalyzeTitle.text = predictionResultName
+        }
+    }
 
     override fun initAction() {}
 

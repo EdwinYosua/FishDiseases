@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +19,6 @@ import com.edwinyosua.fishdiseasesapp.utils.Gallery.imgFile
 import com.edwinyosua.fishdiseasesapp.utils.ext.dialogFragment
 import com.edwinyosua.fishdiseasesapp.utils.toastyMsg
 import com.edwinyosua.fishdiseasesapp.utils.uriToFile
-import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.io.File
@@ -99,9 +97,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         homeViewModel.modelResult.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResult.Success -> {
-//                    toastyMsg(requireContext(), response.data.clazz, 1)
-                    Toasty.success(requireContext(), response.data.prediction, Toast.LENGTH_LONG)
-                        .show()
+
+                    val navigateWithResult =
+                        HomeFragmentDirections.actionHomeFragmentToResultFragment(response.data.prediction)
+                    findNavController().navigate(navigateWithResult)
+
+                    toastyMsg(requireContext(), "Analyze Success !", 1)
+
+                    homeViewModel.setToNull()
+
                     Log.d("HomeFragment", response.data.prediction)
                 }
 
@@ -111,8 +115,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 ApiResult.Loading -> {
-                    toastyMsg(requireContext(), "Loading", 2)
+                    toastyMsg(requireContext(), "Please Wait", 2)
                 }
+
+                null -> {}
             }
         }
     }
@@ -125,5 +131,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
         return imgFile
     }
+
 
 }
