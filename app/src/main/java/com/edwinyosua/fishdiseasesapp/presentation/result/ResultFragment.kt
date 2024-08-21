@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentResultBinding
+import com.edwinyosua.fishdiseasesapp.utils.Gallery
 
 class ResultFragment : BaseFragment<FragmentResultBinding>() {
 
@@ -26,13 +27,16 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
 
     override fun initUI() {
         binding.apply {
+            previewImg.setImageURI(Gallery.currentImgUri)
             txvAnalyzeTitle.text = predictionResultName
         }
     }
 
     override fun initAction() {}
 
-    override fun initProcess() {}
+    override fun initProcess() {
+        Gallery.currentImgUri = null
+    }
 
     override fun initObservers() {}
 

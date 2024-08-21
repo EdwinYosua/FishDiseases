@@ -68,7 +68,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             btnAnalyze.setOnClickListener {
                 if (Gallery.currentImgUri != null) {
                     homeViewModel.analyzeImage(startUploadImage())
-                    Gallery.currentImgUri = null
+//                    Gallery.currentImgUri = null
                 } else toastyMsg(requireContext(), "No Media Selected", 0)
             }
 
