@@ -41,6 +41,17 @@
             android:src="@drawable/rounded_bg_colored"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/prog_bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@color/prgBarColor"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -103,7 +114,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

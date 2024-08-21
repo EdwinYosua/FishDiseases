@@ -10,6 +10,6 @@ object Gallery {
     var currentImgUri: Uri? = null
 
     lateinit var imgFile: File
-    lateinit var launcherGallery: ActivityResultLauncher<PickVisualMediaRequest>
+    var launcherGallery: ActivityResultLauncher<PickVisualMediaRequest>? = null
 
 }

@@ -68,6 +68,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             btnAnalyze.setOnClickListener {
                 if (Gallery.currentImgUri != null) {
                     homeViewModel.analyzeImage(startUploadImage())
+                    Gallery.currentImgUri = null
                 } else toastyMsg(requireContext(), "No Media Selected", 0)
             }
 
@@ -85,7 +86,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             btnGallery.setOnClickListener {
-                Gallery.launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                Gallery.launcherGallery?.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             }
         }
     }
@@ -97,6 +98,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         homeViewModel.modelResult.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResult.Success -> {
+
+                    disableButton(false)
+                    binding.progBar.hide()
 
                     val navigateWithResult =
                         HomeFragmentDirections.actionHomeFragmentToResultFragment(response.data.prediction)
@@ -110,12 +114,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 is ApiResult.Error -> {
+                    binding.progBar.hide()
                     toastyMsg(requireContext(), response.error, 0)
+                    disableButton(false)
                     Log.d("HomeFragment", response.error)
                 }
 
                 ApiResult.Loading -> {
-                    toastyMsg(requireContext(), "Please Wait", 2)
+//                    toastyMsg(requireContext(), "Please Wait", 2)
+                    binding.apply {
+                        progBar.show()
+                        disableButton(true)
+                    }
                 }
 
                 null -> {}
@@ -123,6 +133,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
+    private fun disableButton(isDisabled: Boolean) {
+        binding.apply {
+            if (isDisabled) {
+                btnGallery.isEnabled = false
+                btnAnalyze.isEnabled = false
+                btnImgLogout.isEnabled = false
+                btnCamera.isEnabled = false
+                btnImgHistory.isEnabled = false
+            } else {
+                btnGallery.isEnabled = true
+                btnAnalyze.isEnabled = true
+                btnImgLogout.isEnabled = true
+                btnCamera.isEnabled = true
+                btnImgHistory.isEnabled = true
+            }
+        }
+    }
 
     private fun startUploadImage(): File {
         Gallery.currentImgUri?.let { uri ->
