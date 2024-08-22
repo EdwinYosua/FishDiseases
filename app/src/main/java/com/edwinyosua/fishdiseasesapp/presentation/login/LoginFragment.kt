@@ -82,7 +82,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 when (result) {
                     is ApiResult.Success -> {
                         progBar.hide()
-//                        Toasty.success(requireContext(), "You are logged in !", Toast.LENGTH_SHORT).show()
                         toastyMsg(requireContext(), "You are Logged in !", 1)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         disableButton(true)
@@ -90,7 +89,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                     is ApiResult.Error -> {
                         progBar.hide()
-//                        Toasty.error(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                         toastyMsg(requireContext(), result.error, 0)
                         disableButton(true)
                     }

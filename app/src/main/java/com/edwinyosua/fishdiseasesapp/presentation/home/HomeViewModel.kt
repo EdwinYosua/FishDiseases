@@ -26,6 +26,7 @@ class HomeViewModel(private val modelRepository: ModelUseCase) : ViewModel() {
         }
     }
 
+
     fun setToNull() {
         _modelResult.value = null
     }
