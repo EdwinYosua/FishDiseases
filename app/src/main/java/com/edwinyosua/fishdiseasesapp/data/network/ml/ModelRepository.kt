@@ -1,10 +1,10 @@
 package com.edwinyosua.fishdiseasesapp.data.network.ml
 
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
-import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
 import com.edwinyosua.fishdiseasesapp.domain.prediction.IModelRepository
 import com.edwinyosua.fishdiseasesapp.domain.prediction.entities.Prediction
 import com.edwinyosua.fishdiseasesapp.domain.prediction.mapper.toDomain
+import com.edwinyosua.fishdiseasesapp.utils.ConstVal
 import com.edwinyosua.fishdiseasesapp.utils.reduceFileImg
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -41,8 +41,8 @@ class ModelRepository(
 
 
     private fun reloadKoin() {
-        unloadKoinModules(networkModule)
-        loadKoinModules(networkModule)
+        unloadKoinModules(ConstVal.allModules)
+        loadKoinModules(ConstVal.allModules)
     }
 
 }

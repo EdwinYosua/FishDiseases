@@ -1,13 +1,14 @@
 package com.edwinyosua.fishdiseasesapp.data.network.auth
 
+import android.util.Log
 import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.data.network.ApiResult
 import com.edwinyosua.fishdiseasesapp.data.network.response.ErrorResponse
-import com.edwinyosua.fishdiseasesapp.di.modules.networkModule
 import com.edwinyosua.fishdiseasesapp.domain.auth.IAuthRepository
 import com.edwinyosua.fishdiseasesapp.domain.auth.entities.Login
 import com.edwinyosua.fishdiseasesapp.domain.auth.entities.Register
 import com.edwinyosua.fishdiseasesapp.domain.auth.mapper.toDomain
+import com.edwinyosua.fishdiseasesapp.utils.ConstVal
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +29,7 @@ class AuthRepository(
 //                val loginResponse = response // save response to SettingPreferences later
                 response.userId?.let {
                     dataStore.saveUserLoginData(it)
+                    Log.d("TokenCheck", "AuthRepository : $it")
                 }
 
                 //koin procedure to get the module
@@ -81,8 +83,8 @@ class AuthRepository(
 
     private fun reloadKoin() {
         //koin procedure to get the module
-        unloadKoinModules(networkModule)
-        loadKoinModules(networkModule)
+        unloadKoinModules(ConstVal.allModules)
+        loadKoinModules(ConstVal.allModules)
     }
 
 
