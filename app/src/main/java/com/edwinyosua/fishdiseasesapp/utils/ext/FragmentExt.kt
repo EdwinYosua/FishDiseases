@@ -13,17 +13,17 @@ fun Fragment.dialogFragment(
 ) {
     MaterialAlertDialogBuilder(requireContext()).apply {
         setTitle(title)
-        setPositiveButton(positiveBttnTxt) { _, _ ->
-            onPositiveClick()
-        }
         setNegativeButton(negativeBttnTxt) { action, _ ->
-            action.dismiss()
+            action.cancel()
         }
 
         if (msg != "") {
             setMessage(msg)
         }
 
+        setPositiveButton(positiveBttnTxt) { _, _ ->
+            onPositiveClick()
+        }
     }.create().show()
 
 }

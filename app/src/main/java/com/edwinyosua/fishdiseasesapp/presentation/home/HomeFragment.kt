@@ -68,21 +68,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             btnAnalyze.setOnClickListener {
                 if (Gallery.currentImgUri != null) {
                     homeViewModel.analyzeImage(startUploadImage())
-//                    Gallery.currentImgUri = null
                 } else toastyMsg(requireContext(), "No Media Selected", 0)
             }
 
             btnImgLogout.setOnClickListener {
+
+
                 dialogFragment(
                     title = "Logout",
                     positiveBttnTxt = "Yes",
                     negativeBttnTxt = "No",
                     onPositiveClick = {
-                        lifecycleScope.launch { pref.clearUserLoginData() }
+
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            pref.clearUserLoginData()
+                            Log.d("TokenCheck", "HomeFragment : ${pref.getUserId()}")
+                        }
                         toastyMsg(requireContext(), "You are logged out !", 1)
                         findNavController().navigate(R.id.action_homeFragment_to_onBoardingFragment)
                     }
                 )
+
             }
 
             btnGallery.setOnClickListener {
@@ -121,7 +127,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
 
                 ApiResult.Loading -> {
-//                    toastyMsg(requireContext(), "Please Wait", 2)
                     binding.apply {
                         progBar.show()
                         disableButton(true)
@@ -159,5 +164,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         return imgFile
     }
 
-
 }
+

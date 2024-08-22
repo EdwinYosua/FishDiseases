@@ -1,22 +1,19 @@
 package com.edwinyosua.fishdiseasesapp.presentation.onboarding
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
-import com.edwinyosua.fishdiseasesapp.data.local.SettingPreference
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentOnBoardingBinding
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
 
-    private val pref: SettingPreference by inject()
-
+    private val onBoardingViewModel: OnBoardingViewModel by inject()
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -47,10 +44,19 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
 
     override fun initObservers() {
 
-        lifecycleScope.launch {
-            if (pref.getUserId()?.isNotEmpty() == true) {
-                findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
+        onBoardingViewModel.checkToken().observe(viewLifecycleOwner) { token ->
+            when (token) {
+                null -> {
+                    Log.d("TokenCheck", "OnboardingFragment : ${token}")
+                }
+
+                else -> {
+                    Log.d("TokenCheck", "OnBoardingFragment : $token")
+                    findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
+                }
             }
+
         }
+
     }
 }

@@ -37,7 +37,7 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/onBoardingFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -139,5 +139,11 @@
             android:name="predictionResultName"
             app:argType="string"
             android:defaultValue="Undetected" />
+        <action
+            android:id="@+id/action_resultFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/resultFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
