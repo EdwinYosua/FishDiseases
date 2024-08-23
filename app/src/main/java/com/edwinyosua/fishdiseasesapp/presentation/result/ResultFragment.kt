@@ -3,6 +3,8 @@ package com.edwinyosua.fishdiseasesapp.presentation.result
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.edwinyosua.fishdiseasesapp.R
 import com.edwinyosua.fishdiseasesapp.base.BaseFragment
 import com.edwinyosua.fishdiseasesapp.databinding.FragmentResultBinding
 import com.edwinyosua.fishdiseasesapp.utils.Gallery
@@ -32,7 +34,11 @@ class ResultFragment : BaseFragment<FragmentResultBinding>() {
         }
     }
 
-    override fun initAction() {}
+    override fun initAction() {
+        binding.btnClose.setOnClickListener {
+            findNavController().navigate(R.id.action_resultFragment_to_homeFragment)
+        }
+    }
 
     override fun initProcess() {
         Gallery.currentImgUri = null
